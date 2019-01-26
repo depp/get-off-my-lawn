@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MoveKid : MonoBehaviour {
 
-    [SerializeField]
-    private float speed = 1;
+    public float Speed { get; set; } = 1;
 
     public bool RunningAway { get; private set; } = false;
 
@@ -20,7 +19,7 @@ public class MoveKid : MonoBehaviour {
     }
 
     private void Update() {
-        transform.position += Vector3.left * (RunningAway ? -speed * 5 : speed) * Time.deltaTime;
+        transform.position += Vector3.left * (RunningAway ? -Speed * 5 : Speed) * Time.deltaTime;
     }
 
     private void Awake() {

@@ -10,7 +10,7 @@ public class SpawnKids : MonoBehaviour {
     private GameObject kidPrefab = null;
 
     [SerializeField]
-    private float startintInterval = 1, timeBetweenWaves = 3;
+    private float startingInterval = 1, startingSpeed = 1, percentSpeedVariation = .25f, timeBetweenWaves = 3;
 
     public static int WaveNumber { get; private set; }
 
@@ -51,15 +51,19 @@ public class SpawnKids : MonoBehaviour {
 
     private IEnumerator Wave(int wave) {
         for (int i = 0; i < wave * 10; i++) {
-            yield return new WaitForSeconds(startintInterval / wave);
-            Transform t = Instantiate(kidPrefab).transform;
+            yield return new WaitForSeconds(startingInterval / wave);
+            GameObject kid = Instantiate(kidPrefab);
+
             //https://forum.unity.com/threads/randomly-generate-objects-inside-of-a-box.95088/#post-1263920
             Vector2 spawnPosition = new Vector2(
                 Random.Range(-spawnBox.size.x, spawnBox.size.x),
                 Random.Range(-spawnBox.size.y, spawnBox.size.y)
             );
             spawnPosition = spawnBox.transform.TransformPoint(spawnPosition / 2);
-            t.position = spawnPosition;
+            kid.transform.position = spawnPosition;
+
+            float speed = startingSpeed * wave * Random.Range(1 - percentSpeedVariation, 1 + percentSpeedVariation);
+            kid.GetComponent<MoveKid>().Speed = speed;
         }
     }
 

@@ -669,7 +669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900754576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.82, y: 0, z: 0}
+  m_LocalPosition: {x: 10.71, y: 0, z: 0}
   m_LocalScale: {x: 2.7125, y: 7.5125, z: 1}
   m_Children: []
   m_Father: {fileID: 1808916658}
@@ -715,7 +715,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kidPrefab: {fileID: 4163823214143756190, guid: e5a660fb745a81647992e84b058b75b1,
     type: 3}
-  startintInterval: 1
+  startingInterval: 1
+  startingSpeed: 1
+  percentSpeedVariation: 0.25
   timeBetweenWaves: 3
   waveText: {fileID: 609907192}
 --- !u!1 &907960068
