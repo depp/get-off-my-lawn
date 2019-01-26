@@ -16,10 +16,11 @@ public class PlayerMove : MonoBehaviour {
     }
 
     private void Update() {
-        Vector2 direction = Vector2.zero;
+        Vector2 direction;
         direction.x = Input.GetAxisRaw("P" + PlayerNumber + " Horizontal");
         direction.y = Input.GetAxisRaw("P" + PlayerNumber + " Vertical");
-        rb.velocity = direction.normalized * speed;
+        Vector3 move = Vector3.ClampMagnitude(direction, 1) * speed;
+        rb.velocity = move;
     }
 
 }
