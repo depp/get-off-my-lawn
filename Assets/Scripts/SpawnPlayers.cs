@@ -17,8 +17,9 @@ public class SpawnPlayers : MonoBehaviour {
     }
 
     private void Start() {
+        int playerCount = Mathf.Max(MenuActions.PlayerCount, 1);
         List<Transform> spawnpointsCopy = new List<Transform>(spawnpoints);
-        for (int i = 0; i < MenuActions.PlayerCount; i++) {
+        for (int i = 0; i < playerCount; i++) {
             int randomIndex = Random.Range(0, spawnpointsCopy.Count);
             GameObject player = Instantiate(playerPrefab, spawnpointsCopy[randomIndex].position, Quaternion.identity);
             player.GetComponent<PlayerMove>().PlayerNumber = i + 1;
