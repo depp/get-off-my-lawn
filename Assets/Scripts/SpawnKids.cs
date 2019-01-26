@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SpawnKids2 : MonoBehaviour {
+public class SpawnKids : MonoBehaviour {
 
     [SerializeField]
     private GameObject kidPrefab = null;

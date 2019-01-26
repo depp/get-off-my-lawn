@@ -9,7 +9,7 @@ public class RecordPlayer : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Kid")) {
-            other.GetComponent<MoveKid2>().Speed = hitKidSpeed;
+            other.GetComponent<MoveKid>().Speed = hitKidSpeed;
             Destroy(other.gameObject, 10);
         }
     }

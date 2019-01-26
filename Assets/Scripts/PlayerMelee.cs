@@ -15,7 +15,7 @@ public class PlayerMelee : MonoBehaviour {
         if (Input.GetButtonDown("Fire1")) {
             GameObject[] kidsHit = Physics2D.OverlapCircleAll(areaOfEffect.transform.position, areaOfEffect.radius * AverageParentXY(areaOfEffect.transform)).Where(c => c.CompareTag("Kid")).Select(c => c.gameObject).ToArray();
             foreach (GameObject kid in kidsHit) {
-                kid.GetComponent<MoveKid2>().Speed = hitKidSpeed;
+                kid.GetComponent<MoveKid>().Speed = hitKidSpeed;
                 Destroy(kid, 10);
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveKid2 : MonoBehaviour {
+public class MoveKid : MonoBehaviour {
 
     [SerializeField]
     private float speed = 1;
