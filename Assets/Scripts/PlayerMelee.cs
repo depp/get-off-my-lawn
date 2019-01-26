@@ -8,14 +8,11 @@ public class PlayerMelee : MonoBehaviour {
     [SerializeField]
     private CircleCollider2D areaOfEffect = null;
 
-    [SerializeField]
-    private float hitKidSpeed = -10;
-
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
             GameObject[] kidsHit = Physics2D.OverlapCircleAll(areaOfEffect.transform.position, areaOfEffect.radius * AverageParentXY(areaOfEffect.transform)).Where(c => c.CompareTag("Kid")).Select(c => c.gameObject).ToArray();
             foreach (GameObject kid in kidsHit) {
-                kid.GetComponent<MoveKid>().Speed = hitKidSpeed;
+                kid.GetComponent<MoveKid>().SetRunning();
                 Destroy(kid, 10);
             }
         }

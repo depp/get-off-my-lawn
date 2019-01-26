@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class RecordPlayer : MonoBehaviour {
 
-    [SerializeField]
-    private float hitKidSpeed = -10;
-
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Kid")) {
-            other.GetComponent<MoveKid>().Speed = hitKidSpeed;
+            other.GetComponent<MoveKid>().SetRunning();
             Destroy(other.gameObject, 10);
         }
     }

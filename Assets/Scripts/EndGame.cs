@@ -30,7 +30,7 @@ public class EndGame : MonoBehaviour {
     public static void End() {
         Ended = true;
         Reference.gameOverText.gameObject.SetActive(true);
-        Reference.gameOverText.text += GetTime();
+        Reference.gameOverText.text += SpawnKids.WaveNumber;
         Reference.StartCoroutine(Reference.ChangeScene());
     }
 
