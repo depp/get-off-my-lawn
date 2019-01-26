@@ -12,17 +12,15 @@ public class SpawnKids : MonoBehaviour {
     [SerializeField]
     private float startintInterval = 1, timeBetweenWaves = 3;
 
-    [SerializeField]
-    private Transform spawnpointsContainer = null;
-    private Transform[] spawnpoints = null;
-
     public static int WaveNumber { get; private set; } = 0;
 
     [SerializeField]
     private Text waveText = null;
 
+    private BoxCollider2D spawnBox = null;
+
     private void Awake() {
-        spawnpoints = spawnpointsContainer.GetComponentsInChildren<Transform>().Where(s => s.parent).ToArray();
+        spawnBox = GetComponent<BoxCollider2D>();
     }
 
     private void Start() {
@@ -47,7 +45,6 @@ public class SpawnKids : MonoBehaviour {
         yield return StartCoroutine(Wave(wave));
 
         waveInProgress = false;
-
     }
 
     private bool waveInProgress = false;
@@ -55,7 +52,13 @@ public class SpawnKids : MonoBehaviour {
         for (int i = 0; i < wave * 10; i++) {
             yield return new WaitForSeconds(startintInterval / wave);
             Transform t = Instantiate(kidPrefab).transform;
-            t.position = spawnpoints[Random.Range(0, spawnpoints.Length)].position;
+            //https://forum.unity.com/threads/randomly-generate-objects-inside-of-a-box.95088/#post-1263920
+            Vector2 spawnPosition = new Vector2(
+                Random.Range(-spawnBox.size.x, spawnBox.size.x),
+                Random.Range(-spawnBox.size.y, spawnBox.size.y)
+            );
+            spawnPosition = spawnBox.transform.TransformPoint(spawnPosition / 2);
+            t.position = spawnPosition;
         }
     }
 
