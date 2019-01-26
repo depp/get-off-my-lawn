@@ -10,7 +10,7 @@ public class SpawnKids : MonoBehaviour {
     private GameObject kidPrefab = null;
 
     [SerializeField]
-    private float startingInterval = 1, startingSpeed = 1, percentSpeedVariation = .25f, timeBetweenWaves = 3;
+    private float startingInterval = 1, startingSpeed = 1, percentSpeedVariation = .25f, timeBetweenWaves = 3, endGameSpawnInterval = .1f;
 
     public static int WaveNumber { get; private set; }
 
@@ -28,11 +28,17 @@ public class SpawnKids : MonoBehaviour {
         StartCoroutine(Wave(WaveNumber));
     }
 
+    private bool endGameCoroutineStarted = false;
     private void Update() {
         if (!waveInProgress && MoveKid.AllMoveKidsCopy().All(mk => mk.RunningAway) && !EndGame.Ended) {
             WaveNumber++;
             StartCoroutine(StartWave(WaveNumber));
         }
+        if (EndGame.Ended && !endGameCoroutineStarted) {
+            StartCoroutine(KidSwarm());
+            endGameCoroutineStarted = true;
+        }
+
     }
 
     private bool waveInProgress = false;
@@ -52,19 +58,29 @@ public class SpawnKids : MonoBehaviour {
     private IEnumerator Wave(int wave) {
         for (int i = 0; i < wave * 10; i++) {
             yield return new WaitForSeconds(startingInterval / wave);
-            GameObject kid = Instantiate(kidPrefab);
-
-            //https://forum.unity.com/threads/randomly-generate-objects-inside-of-a-box.95088/#post-1263920
-            Vector2 spawnPosition = new Vector2(
-                Random.Range(-spawnBox.size.x, spawnBox.size.x),
-                Random.Range(-spawnBox.size.y, spawnBox.size.y)
-            );
-            spawnPosition = spawnBox.transform.TransformPoint(spawnPosition / 2);
-            kid.transform.position = spawnPosition;
-
-            float speed = startingSpeed * wave * Random.Range(1 - percentSpeedVariation, 1 + percentSpeedVariation);
-            kid.GetComponent<MoveKid>().Speed = speed;
+            SpawnKid(startingSpeed * wave * Random.Range(1 - percentSpeedVariation, 1 + percentSpeedVariation));
         }
+    }
+
+    private IEnumerator KidSwarm() {
+        while (true) {
+            yield return new WaitForSeconds(endGameSpawnInterval);
+            SpawnKid(10);
+        }
+    }
+
+    private void SpawnKid(float speed) {
+        GameObject kid = Instantiate(kidPrefab);
+
+        //https://forum.unity.com/threads/randomly-generate-objects-inside-of-a-box.95088/#post-1263920
+        Vector2 spawnPosition = new Vector2(
+            Random.Range(-spawnBox.size.x, spawnBox.size.x),
+            Random.Range(-spawnBox.size.y, spawnBox.size.y)
+        );
+        spawnPosition = spawnBox.transform.TransformPoint(spawnPosition / 2);
+        kid.transform.position = spawnPosition;
+
+        kid.GetComponent<MoveKid>().Speed = speed;
     }
 
 }

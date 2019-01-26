@@ -17,6 +17,9 @@ public class EndGame : MonoBehaviour {
     [SerializeField]
     private Text gameOverText = null;
 
+    [SerializeField]
+    private GameObject endGameKidsContainer = null;
+
     private void Awake() {
         startTime = Time.time;
         Ended = false;
@@ -32,6 +35,7 @@ public class EndGame : MonoBehaviour {
         Reference.gameOverText.gameObject.SetActive(true);
         Reference.gameOverText.text += SpawnKids.WaveNumber;
         Reference.StartCoroutine(Reference.ChangeScene());
+        Reference.endGameKidsContainer.SetActive(true);
     }
 
     private IEnumerator ChangeScene() {
