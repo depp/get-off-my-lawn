@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56d77faf7850cd4d98b060a27879159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kidPrefab: {fileID: 4163823214143756190, guid: 599f4e6a4d42d3d48832dce5034278d2,
+  kidPrefab: {fileID: 4163823214143756190, guid: e5a660fb745a81647992e84b058b75b1,
     type: 3}
   startintInterval: 1
   timeBetweenWaves: 3
