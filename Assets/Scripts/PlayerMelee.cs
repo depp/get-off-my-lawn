@@ -10,8 +10,10 @@ public class PlayerMelee : MonoBehaviour {
 
     private Transform carrying = null;
 
+    public int PlayerNumber { get; set; }
+
     private void Update() {
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("P" + PlayerNumber + " Interact")) {
             GameObject[] inCircle = Physics2D.OverlapCircleAll(areaOfEffect.transform.position, areaOfEffect.radius * AverageParentXY(areaOfEffect.transform)).Select(c => c.gameObject).ToArray();
             GameObject[] items = inCircle.Where(c => c.CompareTag("Item")).ToArray();
             if (items.Length > 0) {

@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuActions : MonoBehaviour
 {
+
+    public static int PlayerCount { get; private set; }
+
     public void StartGame(int playerCount)
     {
+        PlayerCount = playerCount;
         StartCoroutine(LoadScene("Game"));
     }
 
