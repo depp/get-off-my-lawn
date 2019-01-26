@@ -8,6 +8,8 @@ public class PlayerMelee : MonoBehaviour {
     [SerializeField]
     private CircleCollider2D areaOfEffect = null;
 
+    private Transform carrying = null;
+
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
             GameObject[] inCircle = Physics2D.OverlapCircleAll(areaOfEffect.transform.position, areaOfEffect.radius * AverageParentXY(areaOfEffect.transform)).Select(c => c.gameObject).ToArray();
@@ -15,7 +17,10 @@ public class PlayerMelee : MonoBehaviour {
             if (items.Length > 0) {
                 RecordPlayer recordPlayer = items[0].GetComponent<RecordPlayer>();
                 recordPlayer.MusicPlaying = true;
-                recordPlayer.Carrying = 1;
+                if (!carrying)
+                    carrying = recordPlayer.transform;
+                else
+                    carrying = null;
             } else {
                 GameObject[] kidsHit = inCircle.Where(c => c.CompareTag("Kid")).ToArray();
                 foreach (GameObject kid in kidsHit) {
@@ -23,6 +28,10 @@ public class PlayerMelee : MonoBehaviour {
                     Destroy(kid, 10);
                 }
             }
+        }
+
+        if (carrying) {
+            carrying.position = transform.position;
         }
     }
 
