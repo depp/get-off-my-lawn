@@ -12,7 +12,7 @@ public class SpawnKids : MonoBehaviour {
     [SerializeField]
     private float startintInterval = 1, timeBetweenWaves = 3;
 
-    public static int WaveNumber { get; private set; } = 0;
+    public static int WaveNumber { get; private set; }
 
     [SerializeField]
     private Text waveText = null;
@@ -21,6 +21,7 @@ public class SpawnKids : MonoBehaviour {
 
     private void Awake() {
         spawnBox = GetComponent<BoxCollider2D>();
+        WaveNumber = 0;
     }
 
     private void Start() {
@@ -34,6 +35,7 @@ public class SpawnKids : MonoBehaviour {
         }
     }
 
+    private bool waveInProgress = false;
     private IEnumerator StartWave(int wave) {
         waveInProgress = true;
 
@@ -47,7 +49,6 @@ public class SpawnKids : MonoBehaviour {
         waveInProgress = false;
     }
 
-    private bool waveInProgress = false;
     private IEnumerator Wave(int wave) {
         for (int i = 0; i < wave * 10; i++) {
             yield return new WaitForSeconds(startintInterval / wave);

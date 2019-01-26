@@ -19,6 +19,7 @@ public class EndGame : MonoBehaviour {
 
     private void Awake() {
         startTime = Time.time;
+        Ended = false;
         Reference = this;
     }
 
