@@ -14,15 +14,21 @@ public class House : MonoBehaviour {
 
     private void Awake() {
         Reference = gameObject;
-        houseText.text = health.ToString();
+        SetHealthText();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Kid")) {
             Destroy(other.gameObject);
             health -= other.GetComponent<KidDamage>().Damage;
-            houseText.text = health.ToString();
+            SetHealthText();
+            if (health <= 0 && !EndGame.Ended)
+                EndGame.End();
         }
+    }
+
+    private void SetHealthText() {
+        houseText.text = Mathf.Max(health, 0).ToString();
     }
 
 }

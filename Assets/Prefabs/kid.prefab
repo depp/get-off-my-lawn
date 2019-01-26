@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4163823214143756188}
   - component: {fileID: 4163823214143756191}
-  - component: {fileID: 8986829285434843330}
+  - component: {fileID: 7718593856065010902}
   - component: {fileID: 414851610885759789}
   - component: {fileID: 6154685200973884028}
   - component: {fileID: 3651955240953909577}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4163823214143756190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8986829285434843330
+--- !u!114 &7718593856065010902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,10 +92,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4163823214143756190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b42973f9380402489332afaff7c6799, type: 3}
+  m_Script: {fileID: 11500000, guid: 823ca261d676a9744b415dcd7a3797b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 4
 --- !u!61 &414851610885759789
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,4 +155,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d40a8f9afd3904a8185920346d4c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
