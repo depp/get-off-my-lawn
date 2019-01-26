@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2536838513068035224}
   m_Layer: 0
   m_Name: record player
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,10 +90,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763887245362500165}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.453614, y: 0.6598048}
@@ -121,7 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4431c587590cb942b8e7aa63837bcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitKidSpeed: -10
 --- !u!50 &2536838513068035224
 Rigidbody2D:
   serializedVersion: 4

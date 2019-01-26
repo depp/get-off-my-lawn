@@ -10,10 +10,18 @@ public class PlayerMelee : MonoBehaviour {
 
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
-            GameObject[] kidsHit = Physics2D.OverlapCircleAll(areaOfEffect.transform.position, areaOfEffect.radius * AverageParentXY(areaOfEffect.transform)).Where(c => c.CompareTag("Kid")).Select(c => c.gameObject).ToArray();
-            foreach (GameObject kid in kidsHit) {
-                kid.GetComponent<MoveKid>().SetRunning();
-                Destroy(kid, 10);
+            GameObject[] inCircle = Physics2D.OverlapCircleAll(areaOfEffect.transform.position, areaOfEffect.radius * AverageParentXY(areaOfEffect.transform)).Select(c => c.gameObject).ToArray();
+            GameObject[] items = inCircle.Where(c => c.CompareTag("Item")).ToArray();
+            if (items.Length > 0) {
+                RecordPlayer recordPlayer = items[0].GetComponent<RecordPlayer>();
+                recordPlayer.MusicPlaying = true;
+                recordPlayer.Carrying = 1;
+            } else {
+                GameObject[] kidsHit = inCircle.Where(c => c.CompareTag("Kid")).ToArray();
+                foreach (GameObject kid in kidsHit) {
+                    kid.GetComponent<MoveKid>().SetRunning();
+                    Destroy(kid, 10);
+                }
             }
         }
     }
