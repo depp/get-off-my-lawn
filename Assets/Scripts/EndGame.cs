@@ -10,7 +10,6 @@ public class EndGame : MonoBehaviour {
 
     private static float startTime;
 
-
     public static bool Ended { get; private set; }
 
     private float returnToMenuDelay = 5;

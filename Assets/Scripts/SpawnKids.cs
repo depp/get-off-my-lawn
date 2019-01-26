@@ -30,7 +30,7 @@ public class SpawnKids : MonoBehaviour {
     }
 
     private void Update() {
-        if (!waveInProgress && MoveKid.AllMoveKidsCopy().All(mk => mk.RunningAway)) {
+        if (!waveInProgress && MoveKid.AllMoveKidsCopy().All(mk => mk.RunningAway) && !EndGame.Ended) {
             WaveNumber++;
             StartCoroutine(StartWave(WaveNumber));
         }
