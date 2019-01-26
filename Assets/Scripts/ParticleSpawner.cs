@@ -39,7 +39,7 @@ public class ParticleSpawner : MonoBehaviour
         phase += rate * Time.deltaTime;
         int count = (int)phase;
         phase -= count;
-        Debug.LogFormat("COUNT: {0}", count);
+        //Debug.LogFormat("COUNT: {0}", count);
         for (int i = 0; i < count; i++)
         {
             float angle = 0.5f * Mathf.Deg2Rad * Random.Range(-angleSpread, +angleSpread);

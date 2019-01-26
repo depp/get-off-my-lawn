@@ -8,16 +8,20 @@ public class RecordPlayer : MonoBehaviour {
 
     [SerializeField]
     private float destroyAfter = 10;
+    private float timePlayed = 0;
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Kid") && MusicPlaying) {
-            other.GetComponent<MoveKid>().SetRunning();
-            Destroy(other.gameObject, 10);
-        }
+    [SerializeField]
+    private ParticleSpawner particleSpawner = null;
+
+    public ParticleSpawner GetParticleSpawner() {
+        return particleSpawner;
     }
 
-    private void Start() {
-        Destroy(gameObject, destroyAfter);
+    private void Update() {
+        if (MusicPlaying)
+            timePlayed += Time.deltaTime;
+        if (timePlayed >= destroyAfter)
+            Destroy(gameObject);
     }
 
 }

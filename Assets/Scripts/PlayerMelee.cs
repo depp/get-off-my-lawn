@@ -19,9 +19,10 @@ public class PlayerMelee : MonoBehaviour {
             if (items.Length > 0) {
                 RecordPlayer recordPlayer = items[0].GetComponent<RecordPlayer>();
                 recordPlayer.MusicPlaying = true;
-                if (!carrying)
+                if (!carrying) {
                     carrying = recordPlayer.transform;
-                else
+                    carrying.GetComponent<RecordPlayer>().GetParticleSpawner().enabled = true;
+                } else
                     carrying = null;
             } else {
                 GameObject[] kidsHit = inCircle.Where(c => c.CompareTag("Kid")).ToArray();
