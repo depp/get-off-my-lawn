@@ -29,7 +29,7 @@ public class MoveKid : MonoBehaviour {
     private void Update() {
         transform.position += Vector3.left * (RunningAway ? -Speed * 5 : Speed) * Time.deltaTime;
         transform.localScale = new Vector3(
-            RunningAway ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x),
+            RunningAway ? -Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x),
             transform.localScale.y,
             transform.localScale.z
         );
