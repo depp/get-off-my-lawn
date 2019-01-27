@@ -31,7 +31,7 @@ public class EndGame : MonoBehaviour {
     public static void End() {
         Ended = true;
         Reference.gameOverText.gameObject.SetActive(true);
-        Reference.gameOverText.text += SpawnKids.WaveNumber;
+        Reference.gameOverText.text += 5;
         Reference.endGameKidsContainer.SetActive(true);
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,12 +11,19 @@ public class MoveKid : MonoBehaviour {
 
     private static List<MoveKid> allMoveKids = new List<MoveKid>();
 
+    public Action Defeated;
+
     public static List<MoveKid> AllMoveKidsCopy() {
         return new List<MoveKid>(allMoveKids);
     }
 
     public void SetRunning() {
+        if (RunningAway)
+            return;
         RunningAway = true;
+        Action f = Defeated;
+        if (f != null)
+            Defeated();
     }
 
     private void Update() {

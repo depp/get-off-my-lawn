@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00b655b16b82422a9d10050112b4dcc, type: 3}
+  m_Name: GameParameters
+  m_EditorClassIdentifier: 
+  kidMoveSpeedStart: 1
+  kidMoveSpeedStep: 1
+  kidMoveSpeedVariation: 0.25
+  kidCountStart: 10
+  kidCountStep: 10
+  kidSpawnRateStart: 1
+  kidSpawnRateStep: 1
