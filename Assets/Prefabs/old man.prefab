@@ -623,6 +623,7 @@ MonoBehaviour:
   areaOfEffect: {fileID: 4493721918169554490}
   phonographArms: {fileID: 247006045097506873}
   regularArms: {fileID: 4199089322142972855}
+  missSound: {fileID: 8300000, guid: e53a527baecf53b4dbe8364b5a66ee5d, type: 3}
 --- !u!61 &8152951094450978368
 BoxCollider2D:
   m_ObjectHideFlags: 0

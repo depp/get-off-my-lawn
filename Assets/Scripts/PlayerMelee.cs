@@ -16,6 +16,9 @@ public class PlayerMelee : MonoBehaviour {
     [SerializeField]
     private GameObject phonographArms = null, regularArms = null;
 
+    [SerializeField]
+    private AudioClip missSound = null;
+
     private void Update() {
         if (Input.GetButtonDown("P" + PlayerNumber + " Interact")) {
             Animator[] animators = regularArms.GetComponentsInChildren<Animator>();
@@ -39,6 +42,8 @@ public class PlayerMelee : MonoBehaviour {
                 }
             } else {
                 GameObject[] kidsHit = inCircle.Where(c => c.CompareTag("Kid")).ToArray();
+                if (kidsHit.Length == 0)
+                    AudioSource.PlayClipAtPoint(missSound, Vector3.zero);
                 foreach (GameObject kid in kidsHit) {
                     kid.GetComponent<MoveKid>().SetRunning();
                     Destroy(kid, 10);
