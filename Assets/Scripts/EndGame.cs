@@ -12,8 +12,6 @@ public class EndGame : MonoBehaviour {
 
     public static bool Ended { get; private set; }
 
-    private float returnToMenuDelay = 5;
-
     [SerializeField]
     private Text gameOverText = null;
 
@@ -34,13 +32,12 @@ public class EndGame : MonoBehaviour {
         Ended = true;
         Reference.gameOverText.gameObject.SetActive(true);
         Reference.gameOverText.text += SpawnKids.WaveNumber;
-        Reference.StartCoroutine(Reference.ChangeScene());
         Reference.endGameKidsContainer.SetActive(true);
     }
 
-    private IEnumerator ChangeScene() {
-        yield return new WaitForSeconds(returnToMenuDelay);
-        SceneManager.LoadScene("Main Menu");
+    private void Update() {
+        if (Ended && Input.GetButtonDown("All Players Button 1"))
+            SceneManager.LoadScene("Main Menu");
     }
 
 }
