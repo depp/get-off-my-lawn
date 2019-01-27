@@ -22325,14 +22325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56d77faf7850cd4d98b060a27879159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 0}
   kidPrefab: {fileID: 4163823214143756190, guid: e5a660fb745a81647992e84b058b75b1,
     type: 3}
-  startingInterval: 1
-  startingSpeed: 1
-  percentSpeedVariation: 0.25
-  timeBetweenWaves: 3
-  endGameSpawnInterval: 0.000001
-  waveText: {fileID: 609907192}
 --- !u!1001 &900990606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55761,6 +55756,14 @@ PrefabInstance:
     - target: {fileID: 7718592898036982498, guid: 09ec903fc12d9ef4cb2d598c5694d88a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 273576158, guid: 09ec903fc12d9ef4cb2d598c5694d88a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 273576158, guid: 09ec903fc12d9ef4cb2d598c5694d88a, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -10,7 +10,7 @@ public class House : MonoBehaviour {
     private int health = 100;
 
     [SerializeField]
-    private Text houseText = null;
+    private Slider healthSlider = null;
 
     [SerializeField]
     private SpriteRenderer goodHouse = null, mediumHouse = null, badHouse = null;
@@ -47,7 +47,9 @@ public class House : MonoBehaviour {
     }
 
     private void SetHealthText() {
-        houseText.text = Mathf.Max(health, 0).ToString();
+        healthSlider.value = Mathf.Clamp(health, 0, 100);
+        if (healthSlider.value == 0)
+            healthSlider.fillRect.gameObject.SetActive(false);
     }
 
 }
