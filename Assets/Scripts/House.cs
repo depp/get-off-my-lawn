@@ -12,6 +12,12 @@ public class House : MonoBehaviour {
     [SerializeField]
     private Text houseText = null;
 
+    [SerializeField]
+    private SpriteRenderer goodHouse = null, mediumHouse = null, badHouse = null;
+
+    [SerializeField]
+    private float mediumThreshold = 60, badThreshold = 20;
+
     private void Awake() {
         Reference = gameObject;
         SetHealthText();
@@ -24,7 +30,20 @@ public class House : MonoBehaviour {
             SetHealthText();
             if (health <= 0 && !EndGame.Ended)
                 EndGame.End();
+            if (health <= badThreshold)
+                ChangeHouses(badHouse);
+            else if (health <= mediumThreshold)
+                ChangeHouses(mediumHouse);
         }
+    }
+
+    private void ChangeHouses(SpriteRenderer sr) {
+        if (badHouse.gameObject.activeSelf != (sr == badHouse))
+            badHouse.gameObject.SetActive(sr == badHouse);
+        if (badHouse.gameObject.activeSelf != (sr == mediumHouse))
+            mediumHouse.gameObject.SetActive(sr == mediumHouse);
+        if (badHouse.gameObject.activeSelf != (sr == goodHouse))
+            goodHouse.gameObject.SetActive(sr == goodHouse);
     }
 
     private void SetHealthText() {
