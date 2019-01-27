@@ -9,11 +9,19 @@ public class PlayerMelee : MonoBehaviour {
     private CircleCollider2D areaOfEffect = null;
 
     private Transform carrying = null;
+    private ParticleSpawner carryingSpawner = null;
 
     public int PlayerNumber { get; set; }
 
+    [SerializeField]
+    private GameObject phonographArms = null, regularArms = null;
+
     private void Update() {
         if (Input.GetButtonDown("P" + PlayerNumber + " Interact")) {
+            Animator[] animators = regularArms.GetComponentsInChildren<Animator>();
+            foreach (Animator a in animators)
+                a.Play("Arm Swing");
+
             GameObject[] inCircle = Physics2D.OverlapCircleAll(areaOfEffect.transform.position, areaOfEffect.radius * AverageParentXY(areaOfEffect.transform)).Select(c => c.gameObject).ToArray();
             GameObject[] items = inCircle.Where(c => c.CompareTag("Item")).ToArray();
             if (items.Length > 0) {
@@ -21,9 +29,14 @@ public class PlayerMelee : MonoBehaviour {
                 recordPlayer.MusicPlaying = true;
                 if (!carrying) {
                     carrying = recordPlayer.transform;
+                    carryingSpawner = carrying.GetComponentInChildren<ParticleSpawner>();
+                    carrying.Find("Phonograph").gameObject.SetActive(false);
                     carrying.GetComponent<RecordPlayer>().GetParticleSpawner().enabled = true;
-                } else
+                } else {
+                    carrying.transform.Find("Phonograph").gameObject.SetActive(true);
                     carrying = null;
+                    carryingSpawner = null;
+                }
             } else {
                 GameObject[] kidsHit = inCircle.Where(c => c.CompareTag("Kid")).ToArray();
                 foreach (GameObject kid in kidsHit) {
@@ -35,6 +48,22 @@ public class PlayerMelee : MonoBehaviour {
 
         if (carrying) {
             carrying.position = transform.position;
+            if (transform.localScale.x < 0) {
+                carrying.localScale = new Vector3(-Mathf.Abs(carrying.localScale.x), carrying.localScale.y, carrying.localScale.z);
+                carryingSpawner.velocity = -Mathf.Abs(carryingSpawner.velocity);
+            } else {
+                carrying.localScale = new Vector3(Mathf.Abs(carrying.localScale.x), carrying.localScale.y, carrying.localScale.z);
+                carryingSpawner.velocity = Mathf.Abs(carryingSpawner.velocity);
+            }
+            if (!phonographArms.activeSelf) {
+                phonographArms.SetActive(true);
+                regularArms.SetActive(false);
+            }
+        } else {
+            if (!regularArms.activeSelf) {
+                phonographArms.SetActive(false);
+                regularArms.SetActive(true);
+            }
         }
     }
 
